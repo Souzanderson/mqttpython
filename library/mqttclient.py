@@ -1,4 +1,6 @@
 from paho.mqtt.client import Client, MQTTv311
+from threading import Thread
+
 import json
 import uuid
 
@@ -53,7 +55,6 @@ class MqttClient():
         self.client.loop_forever()
         
     def thread_subscribe(self, topic, fn_callback):
-        from threading import Thread
         Thread(target=self.subscribe, args=(topic, fn_callback)).start()
         
         
